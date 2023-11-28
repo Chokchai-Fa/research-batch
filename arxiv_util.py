@@ -118,107 +118,9 @@ def query_with_keywords_and_date_range(query, client,start_date, end_date) -> tu
     return terms, titles, abstracts, urls, ids, authors, publisheds, journals
 
 
-query_keywords = [
-    "\"image segmentation\"",
-    "\"self-supervised learning\"",
-    "\"representation learning\"",
-    "\"image generation\"",
-    "\"object detection\"",
-    "\"transfer learning\"",
-    "\"transformers\"",
-    "\"adversarial training\"",
-    "\"generative adversarial networks\"",
-    "\"model compression\"",
-    "\"few-shot learning\"",
-    "\"natural language processing\"",
-    "\"graph neural networks\"",
-    "\"colorization\"",
-    "\"depth estimation\"",
-    "\"point cloud\"",
-    "\"structured data\"",
-    "\"optical flow\"",
-    "\"reinforcement learning\"",
-    "\"super resolution\"",
-    "\"attention mechanisms\"",
-    "\"tabular data\"",
-    "\"unsupervised learning\"",
-    "\"semi-supervised learning\"",
-    "\"explainable AI\"",
-    "\"radiance field\"",
-    "\"decision tree\"",
-    "\"time series analysis\"",
-    "\"molecule generation\"",
-    "\"large language models\"",
-    "\"LLMs\"",
-    "\"language models\"",
-    "\"image classification\"",
-    "\"document image classification\"",
-    "\"encoder-decoder\"",
-    "\"multimodal learning\"",
-    "\"multimodal deep learning\"",
-    "\"speech recognition\"",
-    "\"generative models\"",
-    "\"anomaly detection\"",
-    "\"recommender systems\"",
-    "\"robotics\"",
-    "\"knowledge graphs\"",
-    "\"cross-modal learning\"",
-    "\"attention mechanisms\"",
-    "\"unsupervised translation\"",
-    "\"machine translation\"",
-    "\"dialogue systems\"",
-    "\"sentiment analysis\"",
-    "\"question answering\"",
-    "\"text summarization\"",
-    "\"sequential modeling\"",
-    "\"neurosymbolic AI\"",
-    "\"fairness in AI\"",
-    "\"transferable skills\"",
-    "\"data augmentation\"",
-    "\"neural architecture search\"",
-    "\"active learning\"",
-    "\"automated machine learning\"",
-    "\"meta-learning\"",
-    "\"domain adaptation\"",
-    "\"time series forecasting\"",
-    "\"weakly supervised learning\"",
-    "\"self-supervised vision\"",
-    "\"visual reasoning\"",
-    "\"knowledge distillation\"",
-    "\"hyperparameter optimization\"",
-    "\"cross-validation\"",
-    "\"explainable reinforcement learning\"",
-    "\"meta-reinforcement learning\"",
-    "\"generative models in NLP\"",
-    "\"knowledge representation and reasoning\"",
-    "\"zero-shot learning\"",
-    "\"self-attention mechanisms\"",
-    "\"ensemble learning\"",
-    "\"online learning\"",
-    "\"cognitive computing\"",
-    "\"self-driving cars\"",
-    "\"emerging AI trends\"",
-    "\"Attention is all you need\"",
-    "\"GPT\"",
-    "\"BERT\"",
-    "\"Transformers\"",
-    "\"yolo\"",
-    "\"speech recognisation\"",
-    "\"LSTM\"",
-    "\"GRU\"",
-    "\"BERT - Bidirectinal Encoder Representation of Transformers\"",
-    "\"Large Language Model\" ",
-    "\"Stabel diffusion\"",
-    "\"Attention is all you need\"",
-    "\"Encoder-Decoder\"",
-     "\"Paper Recommendatin systems\"",
-     "\" Latent Dirichlet Allocation (LDA)\"",
-     "\"Transformers\"",
-     "\"Generative Pre-trained Transformer\"",
-]
 
 
-def fetch_arxiv(client, start_date, end_date):
+def fetch_arxiv(client, query_keywords,start_date, end_date):
 
     # list of schema
     all_titles = []
@@ -230,16 +132,15 @@ def fetch_arxiv(client, start_date, end_date):
     all_publisheds = []
     all_journals = []
 
-    for query in query_keywords:
-        terms, titles, abstracts, urls , ids, authors, publisheds, journals = query_with_keywords_and_date_range(query, client, start_date, end_date)
-        all_titles.extend(titles)
-        all_abstracts.extend(abstracts)
-        all_terms.extend(terms)
-        all_urls.extend(urls)
-        all_ids.extend(ids)
-        all_authors.extend(authors)
-        all_publisheds.extend(publisheds)
-        all_journals.extend(journals)
+    terms, titles, abstracts, urls , ids, authors, publisheds, journals = query_with_keywords_and_date_range(query_keywords, client, start_date, end_date)
+    all_titles.extend(titles)
+    all_abstracts.extend(abstracts)
+    all_terms.extend(terms)
+    all_urls.extend(urls)
+    all_ids.extend(ids)
+    all_authors.extend(authors)
+    all_publisheds.extend(publisheds)
+    all_journals.extend(journals)
 
 
     arxiv_data = pd.DataFrame({

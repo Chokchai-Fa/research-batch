@@ -1,9 +1,10 @@
 CREATE TABLE "research" (
-  "ids" varchar PRIMARY KEY,
+  "pk_id" serial primary key,
   "titles" varchar,
   "abstracts" varchar,
   "terms" varchar,
   "urls" varchar,
+  "ids" varchar,
   "authors" varchar,
   "publishes" varchar,
   "journals" varchar
