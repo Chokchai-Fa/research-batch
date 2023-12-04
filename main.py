@@ -11,32 +11,32 @@ from repository import *
 
 
 query_keywords = [
-    "\"image segmentation\"",
-    "\"self-supervised learning\"",
-    "\"representation learning\"",
-    "\"image generation\"",
-    "\"object detection\"",
-    "\"transfer learning\"",
-    "\"transformers\"",
-    "\"adversarial training\"",
-    "\"generative adversarial networks\"",
-    "\"model compression\"",
-    "\"few-shot learning\"",
-    "\"natural language processing\"",
-    "\"graph neural networks\"",
-    "\"colorization\"",
-    "\"depth estimation\"",
-    "\"point cloud\"",
-    "\"structured data\"",
-    "\"optical flow\"",
-    "\"reinforcement learning\"",
-    "\"super resolution\"",
-    "\"attention mechanisms\"",
-    "\"tabular data\"",
-    "\"unsupervised learning\"",
-    "\"semi-supervised learning\"",
-    "\"explainable AI\"",
-    "\"radiance field\"",
+    # "\"image segmentation\"",
+    # "\"self-supervised learning\"",
+    # "\"representation learning\"",
+    # "\"image generation\"",
+    # "\"object detection\"",
+    # "\"transfer learning\"",
+    # "\"transformers\"",
+    # "\"adversarial training\"",
+    # "\"generative adversarial networks\"",
+    # "\"model compression\"",
+    # "\"few-shot learning\"",
+    # "\"natural language processing\"",
+    # "\"graph neural networks\"",
+    # "\"colorization\"",
+    # "\"depth estimation\"",
+    # "\"point cloud\"",
+    # "\"structured data\"",
+    # "\"optical flow\"",
+    # "\"reinforcement learning\"",
+    # "\"super resolution\"",
+    # "\"attention mechanisms\"",
+    # "\"tabular data\"",
+    # "\"unsupervised learning\"",
+    # "\"semi-supervised learning\"",
+    # "\"explainable AI\"",
+    # "\"radiance field\"",
     "\"decision tree\"",
     "\"time series analysis\"",
     "\"molecule generation\"",
@@ -135,12 +135,12 @@ def run_batch_process():
     for keyword in query_keywords:
         fetch_data = fetch_arxiv(client, keyword, last_published_date, current_date)
         if len(fetch_data) >0:
-            
+
             # insert data into database
             insert_research(engine, fetch_data)
 
 # Schedule the batch process to run every week on Sunday at a specific time
-schedule.every().tuesday.at("11:43").do(run_batch_process)
+schedule.every().sunday.at("12:00").do(run_batch_process)
 
 # Keep the script running
 while True:
